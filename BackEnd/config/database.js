@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+const Sequelize = require('sequelize');
 
 database = new Sequelize('all4sport', 'root', 'root', {
     host: 'localhost',
@@ -14,4 +14,4 @@ database = new Sequelize('all4sport', 'root', 'root', {
     }
 })
 
-export default database;
+module.exports = database;

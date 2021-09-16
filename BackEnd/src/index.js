@@ -1,5 +1,5 @@
 var express = require('express');
-import database from '../config/database';
+const database = require('../config/database');
 
 const app = express();
 
