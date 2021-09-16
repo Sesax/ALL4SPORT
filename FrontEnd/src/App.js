@@ -1,8 +1,7 @@
-import {} from '@material-ui/core'
-
+import {Button} from '@mui/material'
 function App() {
-  return(
-    <h1>Erratas</h1>
+  return (
+    <Button variant="contained">Hello World</Button>
   );
 }
 
