@@ -1,8 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
-    const Etagere = sequelize.define("etagere", {
-      et_id: {
+    const Stock = sequelize.define("stock", {
+      st_id: {
         type: Sequelize.INTEGER,
         primaryKey: true
+      },
+      nb_produit: {
+        type: Sequelize.INTEGER
       },
       fk_ba: {
         type: Sequelize.INTEGER,
@@ -19,8 +22,16 @@ module.exports = (sequelize, Sequelize) => {
       fk_se: {
         type: Sequelize.INTEGER,
         primaryKey: true
+      },
+      fk_et: {
+        type: Sequelize.INTEGER,
+        primaryKey: true
+      },
+      fk_pr: {
+        type: Sequelize.INTEGER,
+        primaryKey: true
       }
     });
   
-    return Etagere;
+    return Stock;
 }
