@@ -1,0 +1,4 @@
+gestion des tableaux : 
+	-tri par fournisseur
+	-tri par rayon
+	-tri par batiment, par module, par section, par etagere, etc...
