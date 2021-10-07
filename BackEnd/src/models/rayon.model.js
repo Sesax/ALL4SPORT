@@ -1,13 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
-    const Batiment = sequelize.define("batiment", {
-      ba_id: {
+    const Rayon = sequelize.define("rayon", {
+      rayon_id: {
         type: Sequelize.INTEGER,
         primaryKey: true
       },
-      ba_adresse: {
+      rayon_libelle: {
         type: Sequelize.STRING
       }
     });
   
-    return Batiment;
+    return Rayon;
 }
