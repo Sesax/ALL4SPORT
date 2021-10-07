@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 
-let database = new Sequelize('all4sport', 'root', 'root', {
-    host: '192.168.233.15',
-    dialect: 'mysql',
+let database = new Sequelize('all4sport', 'root', 'H.v59430', {
+  host: 'localhost',
+  dialect: 'mysql',
 
-    define: {timestamps: false},
+  define: { timestamps: false },
 
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 })
 
 let db = {};

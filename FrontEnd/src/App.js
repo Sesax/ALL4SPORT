@@ -90,7 +90,6 @@ export default function FicheEntrpot() {
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.truc}</TableCell>
-
             </TableRow>
           ))}
         </TableBody>
