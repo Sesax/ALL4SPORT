@@ -9,7 +9,7 @@ router.route('/create').post((req, res, next) => {
     }).then(console.log('less gooo'))
 })
 
-router.route('/see').get((req, res) => {
+router.route('/').get((req, res) => {
     controller.getAllBatiments().then((result) => {
 
         res.send(result)
