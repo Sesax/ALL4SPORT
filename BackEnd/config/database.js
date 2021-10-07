@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 let database = new Sequelize('all4sport', 'root', 'root', {
-    host: '192.168.233.15',
+    host: '192.168.202.15',
     dialect: 'mysql',
 
     define: {timestamps: false},

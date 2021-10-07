@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../config/database.js");
 const Etagere = db.etageres;
 
 exports.create = (etagere) => {
@@ -27,3 +27,34 @@ exports.findEtagereProduits = (etagereId) => {
         console.log(">> Error while finding etagere: ", err);
       });
 };
+
+exports.getSectionEtageres = (se_id) => {
+  return Etagere.findAll({
+    where: {
+      fk_se: se_id
+    }
+  })
+}
+
+exports.getEtageres = (ba_id, mo_id, ra_id, se_id) => {
+  return Etagere.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id,
+          fk_ra: ra_id,
+          fk_se: se_id
+        }
+  })
+}
+
+exports.getEtagere = (ba_id, mo_id, ra_id, se_id, et_id) => {
+  return Etagere.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id,
+          fk_ra: ra_id,
+          fk_se: se_id,
+          et_id: et_id
+      }
+  })
+}

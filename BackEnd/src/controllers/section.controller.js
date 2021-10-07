@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../config/database.js");
 const Section = db.sections;
 
 exports.create = (section) => {
@@ -26,3 +26,32 @@ exports.findSectionProduits = (sectionId) => {
         console.log(">> Error while finding section: ", err);
       });
 };
+
+exports.getRangeeSections = (ra_id) => {
+  return Section.findAll({
+    where: {
+      fk_ra: ra_id
+    }
+  })
+}
+
+exports.getSections = (ba_id, mo_id, ra_id) => {
+  return Section.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id,
+          fk_ra: ra_id
+      }
+  })
+}
+
+exports.getSection = (ba_id, mo_id, ra_id, se_id) => {
+  return Section.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id,
+          fk_ra: ra_id,
+          fk_se: se_id
+      }
+  })
+}

@@ -1,9 +1,9 @@
 let express = require('express');
-const { createProduit } = require('../controllers/produit.controller');
+    Produit = require('../controllers/produit.controller.js');
     router = express.Router();
 
-
-
-router.route('/create').post((req, res, next) => {
-    createProduit(req.body.reference, req.body.fournisseur, req.body.rayon, req.body.cout_unitaire_HT, req.body.description);
+router.route('/:pr_id').get((req, res) => {
+    res.send(Produit.getProduit(req.params.pr_id))
 })
+
+module.exports = router;

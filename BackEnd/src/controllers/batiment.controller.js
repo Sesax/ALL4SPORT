@@ -28,3 +28,9 @@ exports.findBatimentProduits = (batimentId) => {
 exports.getAllBatiments = () => {
   return Batiment.findAll()
 }
+
+exports.getBatiment = (ba_id) => {
+  return Batiment.findAll({
+    where: {ba_id: ba_id}
+  })
+}

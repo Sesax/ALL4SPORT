@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../config/database.js");
 const Produit = db.produits;
 
 exports.create = (produit) => {
@@ -31,3 +31,36 @@ exports.findAllProduits = () => {
       return produits;
     });
 };
+
+exports.getEtagereProduits = (et_id) => {
+    return Produit.findAll({
+        where: {
+            fk_et: et_id
+        }
+    })
+}
+
+exports.getProduit = (ba_id, mo_id, ra_id, se_id, et_id, pr_id) => {
+    return Produit.findAll({
+        where: {
+            fk_ba: ba_id,
+            fk_mo: mo_id,
+            fk_ra: ra_id,
+            fk_se: se_id,
+            fk_et: et_id,
+            pr_id: pr_id
+        }
+    })
+}
+
+exports.getProduits = (ba_id, mo_id, ra_id, se_id, et_id) => {
+    return Produit.findAll({
+        where: {
+            fk_ba: ba_id,
+            fk_mo: mo_id,
+            fk_ra: ra_id,
+            fk_se: se_id,
+            fk_et: et_id
+        }
+    })
+}

@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../config/database.js");
 const Module = db.modules;
 
 exports.create = (module) => {
@@ -24,3 +24,20 @@ exports.findModuleProduits = (moduleId) => {
         console.log(">> Error while finding module: ", err);
       });
 };
+
+exports.getBatModule = (batimentId) => {
+  return Module.findAll({
+    where: {
+      fk_ba: batimentId
+    }
+  })
+}
+
+exports.getModule = (ba_id, mo_id) => {
+  return Module.findAll({
+    where: {
+      fk_ba: ba_id,
+      mo_id: mo_id
+    }
+  })
+}

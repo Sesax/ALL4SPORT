@@ -1,7 +1,5 @@
 import React from "react";
 import axios from 'axios';
-import { render } from "react-dom";
-
 export default class Batiments extends React.Component {
     state = {
         batiments: []

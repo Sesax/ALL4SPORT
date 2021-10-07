@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../config/database.js");
 const Rangee = db.rangees;
 
 exports.create = (rangee) => {
@@ -25,3 +25,30 @@ exports.findRangeeProduits = (rangeeId) => {
         console.log(">> Error while finding rangee: ", err);
       });
 };
+
+exports.getModuleRangees = (moduleId) => {
+  return Rangee.findAll({
+    where: {
+      fk_mo: moduleId
+    }
+  })
+}
+
+exports.getRangees = (ba_id, mo_id) => {
+  return Rangee.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id
+      }
+  })
+}
+
+exports.getRangee = (ba_id, mo_id, ra_id) => {
+  return Rangee.findAll({
+      where: {
+          fk_ba: ba_id,
+          fk_mo: mo_id,
+          ra_id: ra_id
+      }
+  })
+}

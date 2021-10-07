@@ -1,0 +1,31 @@
+[
+    {
+        "batiments": "localhost:3000/batiment/liste",
+        "batiment": "localhost:3000/batiment/:ba_id"
+    },
+
+    {
+        "modules": "localhost:3000/batiment/:ba_id",
+        "module": "localhost:3000/batiment/:ba_id/:mo_id"
+    },
+    
+    {
+        "rangees": "localhost:3000/batiment/:ba_id/:mo_id",
+        "rangee": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id"
+    },
+
+    {
+        "sections": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id",
+        "section": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id/:se_id"
+    },
+
+    {
+        "etageres": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id/:se_id",
+        "etagere": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id/:se_id/:et_id"
+    },
+
+    {
+        "produits": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id/:se_id/:et_id",
+        "produit": "localhost:3000/batiment/:ba_id/:mo_id/:ra_id/:se_id/:et_id/:pr_id"
+    }
+]

@@ -1,19 +1,59 @@
 let express = require('express');
     router = express.Router();
-    controller = require('../controllers/batiment.controller.js');
-
-router.route('/create').post((req, res, next) => {
-    controller.create({
-        ba_id: req.body.ba_id,
-        ba_adresse: req.body.ba_adresse
-    }).then(console.log('less gooo'))
-})
+    batiment = require('../controllers/batiment.controller.js');
+    modules = require('../controllers/module.controller.js');
+    rangee = require('../controllers/rangee.controller.js');
+    section = require('../controllers/section.controller.js');
+    etagere = require('../controllers/etagere.controller.js');
+    produit = require('../controllers/produit.controller.js');
 
 router.route('/').get((req, res) => {
-    controller.getAllBatiments().then((result) => {
-
-        res.send(result)
+    batiment.getAllBatiments().then((json) => {
+        res.send(json)
     })
 })
+
+router.route('/:ba_id').get((req, res) => {
+    batiment.getModules(req.params.ba_id).then(json => {
+        res.send(json) 
+    })
+})
+
+router.route(':ba_id/products').get((req, res) => {
+    batiment.findBatimentProduits().then(json => {
+        res.send(json) 
+    })
+})
+
+router.route(':ba_id/:mo_id').get((req, res) => {
+    rangee.getRangees(req.params.ba_id, req.params.mo_id).then(json => {
+        res.send(json)
+    })
+})
+
+router.route('/:ba_id/:mo_id/:ra_id').get((req, res) => {
+    section.getSections(req.params.ba_id, req.params.mo_id, req.params.ra_id).then(json => {
+        res.send(json)
+    })
+})
+
+router.route('/:ba_id/:mo_id/:ra_id/:se_id').get((req, res) => {
+    etagere.getEtageres(req.params.ba_id, req.params.mo_id, req.params.ra_id, req.params.se_id).then(json => {
+        res.send(json)
+    })
+})
+
+router.route('/:ba_id/:mo_id/:ra_id/:se_id/:et_id').get((req, res) => {
+    produit.getProduits(req.params.ba_id, req.params.mo_id, req.params.ra_id, req.params.se_id, req.params.et_id).then(json => {
+        res.send(json)
+    })
+})
+
+router.route('/:ba_id/:mo_id/:ra_id/:se_id/:et_id/:pr_id').get((req, res) => {
+    produit.getProduit(req.params.ba_id, req.params.mo_id, req.params.ra_id, req.params.se_id, req.params.et_id).get(json => {
+        res.send(json)
+    })
+})
+
 
 module.exports = router;
