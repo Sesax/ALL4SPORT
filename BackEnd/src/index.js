@@ -28,6 +28,6 @@ app.use('/batiment', batimentRouter)
 /* app.use('/module', moduleRouter)
 app.use('/rangee', rangeeRouter)
 app.use('/section', sectionRouter)
-app.use('/etagere', etagereRouter)
-app.use('/produit', produitRouter) */
+app.use('/etagere', etagereRouter)*/
+app.use('/produit', produitRouter) 
 app.listen(3000, () => console.log('Express => Rdy'));

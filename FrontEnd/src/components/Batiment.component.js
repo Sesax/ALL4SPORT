@@ -1,20 +1,42 @@
 import React from "react";
 import axios from 'axios';
+
+import { List, ListItem , ListItemButton, ListItemText} from "@mui/material";
 export default class Batiments extends React.Component {
-    state = {
-        batiments: []
+    
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            batiments : []
+        };
+      }
+
+    async componentDidMount() {
+        await axios.get('http://localhost:3000/batiment').then(res => {
+            this.setState({
+                batiments: res.data
+            })
+        }).catch(err => console.error(err))
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:3000/batiment').then(res => {
-            let batiments = res.data
-            this.setState({batiments})
-        })
+    renderBatiments(){
+        const { batiments } = this.state
+        return batiments.map(batiment => (
+            <ListItem key={batiment.ba_id}>
+                <ListItemButton>
+                    <ListItemText>
+                        {batiment.ba_adresse}
+                    </ListItemText>
+                </ListItemButton>
+            </ListItem>
+        ))
     }
 
     render(){
-        return (
-            <div>{this.state.batiments.map(batiment => <h1>{batiment.ba_adresse}</h1>)}</div>
-        )
+        return <List>
+            {this.renderBatiments()}
+        </List>
     }
 }
+

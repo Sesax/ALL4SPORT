@@ -9,7 +9,7 @@ const { getProductsByBatiment } = require('../controllers/produit.controller.js'
     produit = require('../controllers/produit.controller.js');
 
 router.route('/').get((req, res) => {
-    batiment.getAllBatiments().then((json) => {
+    batiment.getBatiments().then((json) => {
         res.send(json)
     })
 })

@@ -1,6 +1,17 @@
 const database = require("../../config/database.js");
 const Sequelize = require('sequelize');
-const Produit = database.produits;
+
+async function getProducts(){
+    let json = []
+    await database.database.query('SELECT * FROM produits', {
+        type: Sequelize.QueryTypes.SELECT
+    }).then((res) => {
+        res.forEach(product => {
+            json.push(product)
+        });
+    })
+    return json
+}
 
 async function getProductsByBatiment(idBatiment){
     let json = []
@@ -15,100 +26,78 @@ async function getProductsByBatiment(idBatiment){
     return json
 }
 
-async function getProductsByModule(idModule){
+async function getProductsByModule(idBatiment, idModule){
     let json = []
-    await database.database.query('SELECT * FROM produits WHERE fk_mo = :idModule', {
+    await database.database.query('SELECT * FROM produits WHERE fk_ba = :idBatiment AND fk_mo = :idModule', {
         type: Sequelize.QueryTypes.SELECT,
-        replacements: {idModule: idModule}
-    }).then((res) => {
-        res.forEach(produit => {
-            json.push(produit)
-        });
-    })
-    return json
-}
-
-async function getProductsByRangee(idRangee){
-    let json = []
-    await database.database.query('SELECT * FROM produits WHERE fk_ra = :idRangee', {
-        type: Sequelize.QueryTypes.SELECT,
-        replacements: {idRangee: idRangee}
-    }).then((res) => {
-        res.forEach(produit => {
-            json.push(produit)
-        });
-    })
-    return json
-}
-
-async function getProductsBySection(idSection){
-    let json = []
-    await database.database.query('SELECT * FROM produits WHERE fk_se = :idSection', {
-        type: Sequelize.QueryTypes.SELECT,
-        replacements: {idSection: idSection}
-    }).then((res) => {
-        res.forEach(produit => {
-            json.push(produit)
-        });
-    })
-    return json
-}
-
-async function getProductsByEtagere(idEtagere){
-    let json = []
-    await database.database.query('SELECT * FROM produits WHERE fk_et = :idEtagere', {
-        type: Sequelize.QueryTypes.SELECT,
-        replacements: {idEtagere: idEtagere}
-    }).then((res) => {
-        res.forEach(produit => {
-            json.push(produit)
-        });
-    })
-    return json
-}
-
-exports.findAllProduits = () => {
-    return Produit.findAll({
-      include: ["photos"],
-    }).then((produits) => {
-      return produits;
-    });
-};
-
-exports.getEtagereProduits = (et_id) => {
-    return Produit.findAll({
-        where: {
-            fk_et: et_id
+        replacements: {
+            idBatiment: idBatiment,
+            idModule: idModule
         }
+    }).then((res) => {
+        res.forEach(produit => {
+            json.push(produit)
+        });
     })
+    return json
 }
 
-exports.getProduit = (ba_id, mo_id, ra_id, se_id, et_id, pr_id) => {
-    return Produit.findAll({
-        where: {
-            fk_ba: ba_id,
-            fk_mo: mo_id,
-            fk_ra: ra_id,
-            fk_se: se_id,
-            fk_et: et_id,
-            pr_id: pr_id
+async function getProductsByRangee(idBatiment, idModule, idRangee){
+    let json = []
+    await database.database.query('SELECT * FROM produits WHERE fk_ba = :idBatiment AND fk_mo = :idModule AND fk_ra = :idRangee', {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: {
+            idBatiment: idBatiment,
+            idModule: idModule,
+            idRangee: idRangee
         }
+    }).then((res) => {
+        res.forEach(produit => {
+            json.push(produit)
+        });
     })
+    return json
 }
 
-exports.getProduits = (ba_id, mo_id, ra_id, se_id, et_id) => {
-    return Produit.findAll({
-        where: {
-            fk_ba: ba_id,
-            fk_mo: mo_id,
-            fk_ra: ra_id,
-            fk_se: se_id,
-            fk_et: et_id
+async function getProductsBySection(idBatiment, idModule, idRangee, idSection){
+    let json = []
+    await database.database.query('SELECT * FROM produits WHERE fk_ba = :idBatiment AND fk_mo = :idModule AND fk_ra = :idRangee AND fk_se = :idSection', {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: {
+            idBatiment: idBatiment,
+            idModule: idModule,
+            idRangee: idRangee,
+            idSection: idSection
         }
+    }).then((res) => {
+        res.forEach(produit => {
+            json.push(produit)
+        });
     })
+    return json
+}
+
+async function getProductsByEtagere(idBatiment, idModule, idRangee, idSection, idEtagere){
+    let json = []
+    await database.database.query('SELECT * FROM produits WHERE fk_ba = :idBatiment AND fk_mo = :idModule AND fk_ra = :idRangee AND fk_se = :idSection AND fk_et = :idEtagere', {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: {
+            idBatiment: idBatiment,
+            idModule: idModule,
+            idRangee: idRangee,
+            idSection: idSection,
+            idEtagere: idEtagere
+        }
+    }).then((res) => {
+        res.forEach(produit => {
+            json.push(produit)
+        });
+    })
+    return json
 }
 
 module.exports = {
+    getProducts,
     getProductsByBatiment,
     getProductsByModule,
     getProductsByRangee,
