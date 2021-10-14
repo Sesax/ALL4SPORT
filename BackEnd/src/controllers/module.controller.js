@@ -25,7 +25,7 @@ exports.findModuleProduits = (moduleId) => {
       });
 };
 
-exports.getBatModule = (batimentId) => {
+exports.getModules = (batimentId) => {
   return Module.findAll({
     where: {
       fk_ba: batimentId

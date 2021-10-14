@@ -1,4 +1,5 @@
 let express = require('express');
+const { getProductsByBatiment } = require('../controllers/produit.controller.js');
     router = express.Router();
     batiment = require('../controllers/batiment.controller.js');
     modules = require('../controllers/module.controller.js');
@@ -14,7 +15,8 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/:ba_id').get((req, res) => {
-    batiment.getModules(req.params.ba_id).then(json => {
+    getProductsByBatiment(req.params.ba_id).then(json => {
+        console.log(json)
         res.send(json) 
     })
 })
@@ -25,7 +27,7 @@ router.route(':ba_id/products').get((req, res) => {
     })
 })
 
-router.route(':ba_id/:mo_id').get((req, res) => {
+router.route('/:ba_id/:mo_id').get((req, res) => {
     rangee.getRangees(req.params.ba_id, req.params.mo_id).then(json => {
         res.send(json)
     })
