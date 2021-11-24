@@ -1,42 +1,46 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import afficherBatiment from "./afficherBatiment.component";
 
-import { List, ListItem , ListItemButton, ListItemText} from "@mui/material";
 export default class Batiments extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            batiments : []
-        };
-      }
+  constructor(props) {
+    super(props);
 
-    async componentDidMount() {
-        await axios.get('http://localhost:3000/batiment').then(res => {
-            this.setState({
-                batiments: res.data
-            })
-        }).catch(err => console.error(err))
-    }
+    this.state = {
+      batiments: [],
+    };
+  }
 
-    renderBatiments(){
-        const { batiments } = this.state
-        return batiments.map(batiment => (
-            <ListItem key={batiment.ba_id}>
-                <ListItemButton>
-                    <ListItemText>
-                        {batiment.ba_adresse}
-                    </ListItemText>
-                </ListItemButton>
-            </ListItem>
-        ))
-    }
+  async componentDidMount() {
+    await axios
+      .get("http://localhost:3000/batiment")
+      .then((res) => {
+        this.setState({
+          batiments: res.data,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
 
-    render(){
-        return <List>
-            {this.renderBatiments()}
-        </List>
-    }
+  renderBatiments() {
+    const { batiments } = this.state;
+    return batiments.map((batiment) => (
+      <ListItem key={batiment.ba_id}>
+        <ListItemButton>
+          <Router>
+            <ListItemText>
+              <a href={afficherBatiment}>{batiment.ba_adresse}</a>
+            </ListItemText>
+          </Router>
+        </ListItemButton>
+      </ListItem>
+    ));
+  }
+
+  render() {
+    return <List>{this.renderBatiments()}</List>;
+  }
 }
-

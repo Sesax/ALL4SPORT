@@ -1,35 +1,38 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
-let database = new Sequelize('all4sport', 'root', 'root', {
-    host: '192.168.22.15',
-    dialect: 'mysql',
+let database = new Sequelize("all4sport", "projet", "azerty", {
+  host: "localhost",
+  dialect: "mysql",
 
-    define: {timestamps: false},
+  define: { timestamps: false },
 
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-})
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+});
 
 let db = {};
 
 db.Sequelize = Sequelize;
 db.database = database;
 
-db.produits = require('../src/models/produit.model.js')(database, Sequelize);
-db.photos = require('../src/models/photo.model.js')(database, Sequelize);
-db.etageres = require('../src/models/etagere.model.js')(database, Sequelize);
-db.modules = require('../src/models/module.model.js')(database, Sequelize);
-db.rangees = require('../src/models/rangee.model.js')(database, Sequelize);
-db.sections = require('../src/models/section.model.js')(database, Sequelize);
-db.stocks = require('../src/models/stock.model.js')(database, Sequelize);
-db.batiments = require('../src/models/batiment.model.js')(database, Sequelize);
-db.users = require('../src/models/user.model.js')(database, Sequelize);
-db.fournisseurs = require('../src/models/fournisseur.model.js')(database, Sequelize);
-db.rayons = require('../src/models/rayon.model.js')(database, Sequelize);
+db.produits = require("../src/models/produit.model.js")(database, Sequelize);
+db.photos = require("../src/models/photo.model.js")(database, Sequelize);
+db.etageres = require("../src/models/etagere.model.js")(database, Sequelize);
+db.modules = require("../src/models/module.model.js")(database, Sequelize);
+db.rangees = require("../src/models/rangee.model.js")(database, Sequelize);
+db.sections = require("../src/models/section.model.js")(database, Sequelize);
+db.stocks = require("../src/models/stock.model.js")(database, Sequelize);
+db.batiments = require("../src/models/batiment.model.js")(database, Sequelize);
+db.users = require("../src/models/user.model.js")(database, Sequelize);
+db.fournisseurs = require("../src/models/fournisseur.model.js")(
+  database,
+  Sequelize
+);
+db.rayons = require("../src/models/rayon.model.js")(database, Sequelize);
 
 //==================================
 //==================================
