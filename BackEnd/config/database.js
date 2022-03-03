@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-let database = new Sequelize("all4sport", "projet", "azerty", {
+let database = new Sequelize("all4sport", "root", "root", {
   host: "localhost",
   dialect: "mysql",
 

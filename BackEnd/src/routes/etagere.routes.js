@@ -1,9 +1,9 @@
 let express = require('express');
+const { getSectionEtageres } = require('../controllers/etagere.controller.js');
     router = express.Router();
-    etagere = require('../controllers/etagere.controller.js');
 
 router.route('/:et_id').get((req, res) => {
-    etagere.getSectionEtageres(req.params.et_id).then((result) => {
+    getSectionEtageres(req.params.et_id).then((result) => {
         res.send(result)
     })
 })

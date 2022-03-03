@@ -77,6 +77,22 @@ async function getProductsBySection(idBatiment, idModule, idRangee, idSection){
     return json
 }
 
+async function getProductByRef(pr_reference) {
+    console.log(pr_reference)
+    let json = []
+    await database.database.query('SELECT * FROM produits WHERE pr_reference = :pr_reference', {
+        type: Sequelize.QueryTypes.SELECT,
+        replacements: {
+            pr_reference: pr_reference
+        }
+    }).then((res) => {
+        res.forEach(produit => {
+            json.push(produit)
+        })
+    })
+    return json
+}
+
 async function getProductsByEtagere(idBatiment, idModule, idRangee, idSection, idEtagere){
     let json = []
     await database.database.query('SELECT * FROM produits WHERE fk_ba = :idBatiment AND fk_mo = :idModule AND fk_ra = :idRangee AND fk_se = :idSection AND fk_et = :idEtagere', {
@@ -102,5 +118,6 @@ module.exports = {
     getProductsByModule,
     getProductsByRangee,
     getProductsBySection,
-    getProductsByEtagere
+    getProductsByEtagere,
+    getProductByRef
 }

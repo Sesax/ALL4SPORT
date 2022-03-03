@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-const { getProducts, getProductsByBatiment, getProductsByModule, getProductsByRangee, getProductsBySection } = require('../controllers/produit.controller.js');
+const { getProducts, getProductsByBatiment, getProductsByModule, getProductsByRangee, getProductsBySection, getProductByRef } = require('../controllers/produit.controller.js');
 
 router.route('/').get((req, res) => {
     getProducts().then((products) => {
@@ -11,6 +11,12 @@ router.route('/').get((req, res) => {
 router.route('/getByBatiment:key').get((req, res) => {
     let idBatiment = req.params.key.substr(1, 1)
     getProductsByBatiment(idBatiment).then((products) => {
+        res.send(products)
+    })
+})
+
+router.route('/getProduit:id').get((req, res) => {
+    getProductByRef(req.params.id).then((products) => {
         res.send(products)
     })
 })
